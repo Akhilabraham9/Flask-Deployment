@@ -20,6 +20,11 @@ def predict():
 
     return render_template('index.html', prediction_text='Employee Salary should be $ {}'.format(output))
 
+@app.route('/predict_api', methods=['POST'])
+def predict_api():
+    data = request.get_json(force = True)
+    prediction = model.predict([np.array(list(data.values()))])
 
+    
 if __name__ == "__main__":
     app.run(debug=True)
